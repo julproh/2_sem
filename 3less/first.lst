@@ -1,0 +1,15 @@
+     1                                  global _start
+     2                                  section .data
+     3 00000000 48656C6C6F20776F72-     msg db "Hello world", 10, 0
+     3 00000009 6C640A00           
+     4                                  msgln equ $-msg
+     5                                  section .text
+     6                                  _start:
+     7 00000000 B804000000              	mov eax, 4
+     8 00000005 BB01000000              	mov ebx, 1
+     9 0000000A B9[00000000]            	mov ecx, msg
+    10 0000000F BA0D000000              	mov edx, msgln
+    11 00000014 CD80                    int 0x80
+    12 00000016 B801000000              	mov eax, 1
+    13 0000001B BB00000000              	mov ebx, 0
+    14 00000020 CD80                    int 0x80 

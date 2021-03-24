@@ -1,0 +1,58 @@
+perehodi
+
+ jmp op -  bezuslovnii perehod
+ jmp short l
+
+_______
+ section .bss
+ p resd 1
+
+mov eax, l
+mov [p], eax
+jmp dword[p] - priamoi perehod
+
+___________
+
+jmp s - bexuslovn perehod
+
+jmp s1
+s1 : print mov eax, 4 mov ebx, 1
+stop with prerivaniya
+_____________
+
+
+l name.lst
+_____________
+
+uslovniy perehod
+cmp op1, op2 - compare
+
+j xx  l
+j x   l
+
+-----------
+
+e -> = 
+n -> not
+so znakom
+g -> >
+l -> <
+bez zn
+a -> >
+b -> < 
+
+op1 op2
+r8 r8, m8, i8
+m8 r8, i8
+16 , 32
+___________________________
+jc l  perehod if cf = 1
+jo l -> of = 1
+jz l -> zf = 1
+js l -> gf = 1
+jcxz l -> eax = 0
+
+__________________
+
+
+

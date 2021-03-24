@@ -1,0 +1,33 @@
+global _start
+%include "st_io.inc"
+section .data 
+ a db 4
+ b db 3
+ c db 5
+section .text
+_start :
+
+mov ax, [a]
+mov bx, [b]
+mov cx, [c]
+mov dx, [a]
+
+adc dx, bx
+cmp dx, cx
+je l 
+jb l
+mov dx, bx
+adc dx, cx
+cmp dx, ax
+je l
+jb l
+mov dx, cx
+adc dx, ax
+cmp dx, bx
+je l
+jb l
+jmp m
+l : PRINT "NO"
+FINSH
+m : PRINT "YES"
+FINISH

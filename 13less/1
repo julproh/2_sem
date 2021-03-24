@@ -1,0 +1,76 @@
+%include "st_io.inc"
+global _start
+
+struc node
+.elem: resw 1
+.next: resd 1
+endstruc
+
+section .bss
+heap_ptr resd 1
+
+section .data
+NIL equ 0
+k equ 20
+heap_size equ k
+list dd NIL
+
+section .text
+
+_start:
+
+call init_heap
+
+mov ecx, k
+metka1:
+jmp t
+metka2:
+mov [edi+node.elem], ax
+push dword[list]
+mov [list], edi
+
+call new
+mov 
+loop metka1
+
+t:
+GETUN eax
+jmp metka2
+
+finish:
+PUTCHAR 0xA
+FINISH
+
+init_heap:
+xor ebx, ebx
+mov eax, 45
+int 0x80
+
+add eax,6
+mov ebx, eax
+mov eax, 45
+int 0x80
+
+sub eax,6
+mov ecx, heap_size
+mov ebx, NIL
+l: mov[eax+node.next], ebx
+mov ebx, eax
+sub eax,  6
+loop l
+mov [heap_ptr], ebx 
+ret
+
+new:
+mov edi, [heap_ptr]
+cmp edi, NIL
+je empty
+push dword[edi+node.next]
+pop dword[heap_ptr]
+ret
+
+empty:
+mov edi, 0
+PRINT "empty"
+PUTCHAR 0xA
+ret
